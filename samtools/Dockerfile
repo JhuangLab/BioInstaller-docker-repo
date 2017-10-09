@@ -3,7 +3,7 @@ FROM alpine
 ENV version 1.6
 
 RUN apk add --update --no-cache ncurses libbz2 xz zlib\
-        && apk add --virtual=deps --update --no-cache ncurses-dev musl-dev g++ make zlib-dev bzip2-dev xz-dev autoconf automake wget\
+        && apk add --virtual=deps --update --no-cache ncurses-dev musl-dev g++ make zlib-dev bzip2-dev xz-dev autoconf automake curl\
         && cd /tmp \
         && curl -fsSL https://github.com/samtools/htslib/archive/${version}.tar.gz -o htslib-${version}.tar.gz\
         && curl -fsSL https://github.com/samtools/samtools/archive/${version}.tar.gz -o samtools-${version}.tar.gz \
