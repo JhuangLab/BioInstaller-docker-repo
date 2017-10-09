@@ -12,8 +12,8 @@ RUN apk add --update --no-cache ncurses libbz2 xz zlib\
         && ./configure --prefix=/tmp/htslib-${version} && make &&  make install && cd ..\
         && tar xzvf samtools-${version}.tar.gz \
         && cd /tmp/samtools-${version} \
-        && autoconf -Wno-syntax && sed -i 's;HTSDIR = ../htslib;HTSDIR = ../htslib-${version};' config.mk \
-        && ./configure --prefix=/tmp/samtools-${version} && make && make install prefix=/tmp/samtools-${version} \
+        && autoconf -Wno-syntax \
+        && ./configure --with-htslib=/tmp/htslib-${version} --prefix=/tmp/samtools-${version} && make && make install prefix=/tmp/samtools-${version} \
         && mv /tmp/samtools-${version}/samtools /usr/bin \
         && rm -rf /var/cache/apk/* /tmp/* \
         && apk del deps
