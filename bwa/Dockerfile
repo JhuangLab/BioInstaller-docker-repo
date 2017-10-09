@@ -5,7 +5,7 @@ MAINTAINER life2cloud lee_jianfeng@sjtu.edu.cn
 ENV version 0.7.15
 
 RUN apk add --update --no-cache ncurses \
-        && apk add --virtual=deps --update --no-cache  musl-dev zlib-dev make gcc wget\
+        && apk add --virtual=deps --update --no-cache  musl-dev zlib-dev make gcc curl\
         && cd /tmp \
         && curl -fsSL https://github.com/lh3/bwa/archive/v${version}.tar.gz -o v${version}.tar.gz \
         && tar xzvf v${version}.tar.gz \
