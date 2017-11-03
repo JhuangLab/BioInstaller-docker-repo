@@ -1,11 +1,11 @@
-## Dockerized  [picard](http://https://github.com/life2cloud/BioInstaller-docker-repo/picard/)
+## Dockerized  [picard](http://https://github.com/bioinstaller/BioInstaller-docker-repo/picard/)
 
 ### Usage:
 
 Docker Pull Command:
 
 ```
-docker pull life2cloud/picard
+docker pull bioinstaller/picard
 ```
 
 Picard:
@@ -15,5 +15,5 @@ A set of command line tools (in Java) for manipulating high-throughput sequencin
 For more information about Picard, see http://broadinstitute.github.io/picard/
 
 ```
-docker run life2cloud/picard --help
+docker run bioinstaller/picard --help
 ```

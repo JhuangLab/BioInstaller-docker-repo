@@ -5,7 +5,7 @@
 Docker Pull Command:
 
 ```
-docker pull life2cloud/samtools
+docker pull bioinstaller/samtools
 ```
 
 samtools:
@@ -20,5 +20,5 @@ Allows the file to be indexed by genomic position to efficiently retrieve all re
 SAM Tools provide various utilities for manipulating alignments in the SAM format, including sorting, merging, indexing and generating alignments in a per-position format.
 
 ```
-docker run life2cloud/samtools --help
+docker run bioinstaller/samtools --help
 ```

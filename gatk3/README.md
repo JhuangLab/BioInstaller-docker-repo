@@ -1,11 +1,11 @@
-## Dockerized  [GATK3](http://https://github.com/life2cloud/BioInstaller-docker-repo/gatk3/)
+## Dockerized  [GATK3](http://https://github.com/bioinstaller/BioInstaller-docker-repo/gatk3/)
 
 ### Usage:
 
 Docker Pull Command:
 
 ```
-docker pull life2cloud/gatk3
+docker pull bioinstaller/gatk3
 ```
 
 Genome Analysis Toolkit:
@@ -18,5 +18,5 @@ License
 The versions of GATK in this repository are produced by the Broad Institute and fully open source under a BSD (3-clause) license.
 
 ```
-docker run life2cloud/gatk --help
+docker run bioinstaller/gatk3 --help
 ```
