@@ -3,10 +3,11 @@ FROM opencpu/rstudio
 ## This handle reaches Jianfeng
 MAINTAINER "Jianfeng Li" lee_jianfeng@life2cloud.com
 
-ADD ./sources.list /etc/apt/sources.list 
-ADD http://bioinfo.rjh.com.cn/download/bioinstaller/shiny-server/shiny-server-1.5.7.907-amd64.deb /tmp/shiny-server-1.5.7.907-amd64.deb
+ADD https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.9.923-amd64.deb /tmp/shiny-server.deb
+ADD ./sources.list /etc/apt/sources.list
 
-Run apt-get update && apt-get install -y --no-install-recommends \
+Run apt update \
+    && apt-get install -y --no-install-recommends \
     libcairo2-dev \
     librsvg2-dev \
     libmariadb-client-lgpl-dev \
@@ -29,16 +30,19 @@ Run apt-get update && apt-get install -y --no-install-recommends \
 	texlive-latex-extra \
 	texlive-latex-recommended \
     protobuf-compiler \
+    r-base\
     && echo "options('repos' = c(CRAN='https://mirrors.tuna.tsinghua.edu.cn/CRAN/'))" >> ~/.Rprofile \
     && echo "options(BioC_mirror='https://mirrors.tuna.tsinghua.edu.cn/bioconductor')" >> ~/.Rprofile \
-    && Rscript -e "install.packages(c('Rcpp'))" \
-    && Rscript -e "install.packages(c('reshape2'))" \
-    && Rscript -e "install.packages(c('dplyr'))" \
-    && Rscript -e "install.packages(c('stringi', 'stringr', 'ggplot2', 'igraph'))" \
-    && Rscript -e "source('https://bioconductor.org/biocLite.R');biocLite(ask = FALSE);" \
-    && Rscript -e "install.packages(c('configr', 'ngstk', 'BioInstaller', 'annovarR'))" \
-    && Rscript -e "update.packages(ask = FALSE)" \
-    && gdebi -n /tmp/shiny-server-1.5.7.907-amd64.deb \
+    && Rscript -e "update.packages(ask = FALSE, checkBuilt=TRUE)" \
+    && runuser -s /bin/bash -l opencpu -c 'Rscript -e "update.packages(ask = FALSE, checkBuilt=TRUE)"' \
+    && Rscript -e "install.packages('pacman')" \
+    && Rscript -e "install.packages('BiocManager');BiocManager::install();" \
+    && Rscript -e "pacman::p_load(jsonlite, rvcheck, Rcpp, reshape2, dplyr)" \
+    && Rscript -e "pacman::p_load(stringi, stringr, ggplot2, igraph)" \
+    && Rscript -e "pacman::p_load(configr, ngstk, BioInstaller, annovarR)" \
+    && Rscript -e "rvcheck::update_all()" \
+    && Rscript -e "BiocManager::install(ask = FALSE, update = TRUE)" \
+    && gdebi -n /tmp/shiny-server.deb \
     && echo "shiny-server &" >> /usr/bin/start_shiny_server \
     && chmod a+x /usr/bin/start_shiny_server \
     && a2enmod rewrite\
@@ -48,6 +52,5 @@ Run apt-get update && apt-get install -y --no-install-recommends \
     && chown -R opencpu /opt/shiny-server \
     && chown -R opencpu /var/lib/shiny-server \
   	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
-	&& rm -rf /var/lib/apt/lists/*
 
-CMD service cron start && sh /usr/bin/start_shiny_server && /usr/lib/rstudio-server/bin/rserver && apachectl -DFOREGROUND
+CMD service cron start && /usr/lib/rstudio-server/bin/rserver && apachectl -DFOREGROUND
