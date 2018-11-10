@@ -4,7 +4,6 @@ FROM bioinstaller/opencpu-bioc
 MAINTAINER "Jianfeng Li" lee_jianfeng@life2cloud.com
 
 ADD https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.9.923-amd64.deb /tmp/shiny-server.deb
-ADD ./sources.list /etc/apt/sources.list
 
 Run apt update \
     && apt-get install -y --no-install-recommends \
