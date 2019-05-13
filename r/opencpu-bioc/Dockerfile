@@ -3,7 +3,7 @@ FROM bioinstaller/opencpu-base
 ## This handle reaches Jianfeng
 MAINTAINER "Jianfeng Li" lee_jianfeng@life2cloud.com
 
-ENV bioc_version 3.8
+ENV bioc_version devel
 
 Run Rscript -e "install.packages('BiocManager');BiocManager::install(version = \"${bioc_version}\", ask = FALSE);" \
     && Rscript -e "BiocManager::install('AnnotationDbi', version = \"${bioc_version}\", ask = FALSE)" \
