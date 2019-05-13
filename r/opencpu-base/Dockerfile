@@ -5,7 +5,8 @@ MAINTAINER "Jianfeng Li" lee_jianfeng@life2cloud.com
 
 ADD ./sources.list /etc/apt/sources.list
 
-Run apt update \
+Run apt update &&\
+    apt upgrade -y \
     && apt-get install -y --no-install-recommends \
     libcairo2-dev \
     librsvg2-dev \
