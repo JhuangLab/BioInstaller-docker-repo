@@ -1,4 +1,4 @@
-FROM bioinstaller/opencpu-bioc
+FROM bioinstaller/opencpu-base
 
 ## This handle reaches Jianfeng
 MAINTAINER "Jianfeng Li" lee_jianfeng@life2cloud.com
