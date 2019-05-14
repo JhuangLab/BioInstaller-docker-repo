@@ -10,6 +10,7 @@ Run apt update \
     && Rscript -e "update.packages(ask = FALSE, checkBuilt=TRUE)" \
     && runuser -s /bin/bash -l opencpu -c 'Rscript -e "update.packages(ask = FALSE, checkBuilt=TRUE)"' \
     && Rscript -e "install.packages('pacman')" \
+    && Rscript -e "install.packages('devtools')" \
     && Rscript -e "pacman::p_load(jsonlite, rvcheck, Rcpp, reshape2, dplyr)" \
     && Rscript -e "pacman::p_load(stringi, stringr, ggplot2, igraph)" \
     && Rscript -e "pacman::p_load(configr, ngstk)" \
