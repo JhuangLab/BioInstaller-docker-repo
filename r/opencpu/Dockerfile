@@ -24,6 +24,6 @@ Run apt update \
     && chown -R opencpu /var/log/shiny-server \
     && chown -R opencpu /opt/shiny-server \
     && chown -R opencpu /var/lib/shiny-server \
-  	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+  	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds /tmp/*
 
 CMD service cron start && /usr/lib/rstudio-server/bin/rserver && apachectl -DFOREGROUND
